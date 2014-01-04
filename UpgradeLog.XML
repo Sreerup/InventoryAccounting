@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="Madhushala">
+</Property><Property Name="Solution File" Value="D:\souparno\Project\dot net\desktop application\WineStoreManageMent\Madhushala.sln">
+</Property><Property Name="Date" Value="Thursday, June 06, 2013">
+</Property><Property Name="Time" Value="14:52 PM">
+</Property></Properties><Event ErrorLevel="4" Project="Madhushala" Source="http://go.microsoft.com/fwlink/?LinkId=159919" Description="Warning: this project requires Crystal Reports, which is no longer included with Visual Studio. Please click here for more information.">
+</Event><Event ErrorLevel="0" Project="Madhushala" Source="WindowsApplication3\Madhushala.vbproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="Madhushala" Source="WindowsApplication3\Madhushala.vbproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="Madhushala.sln" Description="Solution converted successfully">
+</Event><Event ErrorLevel="3" Project="" Source="Madhushala.sln" Description="Converted">
+</Event><Event ErrorLevel="0" Project="Madhushala" Source="WindowsApplication3\Madhushala.vbproj" Description="Scan complete: Upgrade not required for project files.">
+</Event></UpgradeLog>

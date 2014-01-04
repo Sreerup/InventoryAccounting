@@ -1,0 +1,9 @@
+;
+;Configurarion Information File
+;
+;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+SQLServer=abm-pc\sqlexpress	; Sql Server Name
+SQLServer::Database=barmanager	; database file name
+;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+TallyServer::IP=http://localhost:9000
+TallyExportDirectory=c:\

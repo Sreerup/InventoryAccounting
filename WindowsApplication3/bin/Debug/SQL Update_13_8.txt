@@ -1,0 +1,298 @@
+
+1)
+Table name - companyparamtr
+
+add new field - "print_mode" - varchar(7)
+------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------
+
+2)
+Table name - itemmst
+
+add new field - "purchaserate"- float
+
+Execute following sql
+
+update itemmst set purchaserate = 0
+
+------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------
+
+
+3)
+
+Execute following sql
+
+
+
+
+CREATE function [dbo].[opening_closing_stock_rep](@day1 datetime,@day2 datetime,@day3 datetime) returns table
+as
+return
+select itemcode,itemname,rate,sum(opening_stock) as opening_stock,sum(bottles_purchased) as bottles_purchased,sum(bottles_sold) as bottles_sold, sum(stock)+sum(opening_stock)+ sum(bottles_purchased)-sum(bottles_sold)as stock,companycode,storecode,yearcode
+from(
+-- PART1 >@day2 and <@day2----->
+-- ==========for adding the qunatities in the stock==========
+select itemmst.itemcode,itemname,0 as rate,sum(qnty) as opening_stock,0 as bottles_purchased,0 as bottles_sold,0 as stock,itemmst.companycode,shopcode as storecode,yearcode
+from openingstockmst
+join itemmst 
+on 
+openingstockmst.itemcode=itemmst.itemcode 
+and openingstockmst.companycode=itemmst.companycode
+where openingstockmst.trndate=@day1
+group by itemmst.itemcode,itemmst.itemname,itemmst.companycode,shopcode,openingstockmst.yearcode
+union all
+-- ===========deducting those quantities from the stock that has been sold==========
+select itemmst.itemcode,itemmst.itemname, rate,(-1)*sum(qnty) as opening_stock,0 as bottles_purchased,0 as bottles_sold,0 as stock,salesbillmain.companycode,storecode,salesbillmain.yearcode 
+from salesbillmain
+join salesbilldetail 
+on salesbillmain.companycode=salesbilldetail.companycode and salesbillmain.yearcode=salesbilldetail.yearcode and salesbillmain.trnno=salesbilldetail.trnno
+join itemmst on itemmst.itemcode=salesbilldetail.itemcode and salesbilldetail.companycode=itemmst.companycode
+where salestype<>'RETURN' and salesbillmain.trndate >=@day1 and salesbillmain.trndate <@day2 
+group by itemmst.itemcode,itemmst.itemname,rate,salesbillmain.companycode,storecode,salesbillmain.yearcode
+union all
+-- ===========adding those quantities back to the stock that has been returned back=====
+select itemmst.itemcode,itemmst.itemname,rate,sum(qnty) as opening_stock,0 as bottles_purchased,0 as bottles_sold,0 as stock,salesbillmain.companycode,storecode,salesbillmain.yearcode 
+from salesbillmain
+join salesbilldetail 
+on salesbillmain.companycode=salesbilldetail.companycode and salesbillmain.yearcode=salesbilldetail.yearcode and salesbillmain.trnno=salesbilldetail.trnno
+join itemmst on itemmst.itemcode=salesbilldetail.itemcode and salesbilldetail.companycode=itemmst.companycode
+where salestype='RETURN' and salesbillmain.trndate >=@day1 and salesbillmain.trndate <@day2 
+group by itemmst.itemcode,itemmst.itemname,rate,salesbillmain.companycode,storecode,salesbillmain.yearcode
+union all
+-- ==========adding the quantities to the stock that has been purchased===========
+select itemmst.itemcode,itemmst.itemname,0 as rate,sum(itemquantity) as opening_stock,0 as bottles_purchased,0 as bottles_sold,0 as stock,purchasemain.companycode,shopcode as storecode,purchasemain.yearcode 
+from purchasemain
+join purchasedetail 
+on purchasedetail.companycode=purchasemain.companycode
+and purchasedetail.trnno=purchasemain.trnno
+and purchasedetail.yearcode=purchasemain.yearcode
+join itemmst on itemmst.itemcode=purchasedetail.itemcode
+and itemmst.companycode=purchasedetail.companycode
+where ptype='PURCHASE' and purchasemain.trndate >=@day1 and purchasemain.trndate <@day2
+group by itemmst.itemcode,itemmst.itemname,purchasemain.companycode,shopcode,purchasemain.yearcode
+union all
+-- ==========subtracting those quantities to the stock that has been purchased returned=========
+select itemmst.itemcode,itemmst.itemname,0 as rate,-1*sum(itemquantity) as opening_stock,0 as bottles_purchased,0 as bottles_sold,0 as stock,purchasemain.companycode,shopcode as storecode,purchasemain.yearcode 
+from purchasemain
+join purchasedetail 
+on purchasedetail.companycode=purchasemain.companycode
+and purchasedetail.trnno=purchasemain.trnno
+and purchasedetail.yearcode=purchasemain.yearcode
+join itemmst on itemmst.itemcode=purchasedetail.itemcode
+and itemmst.companycode=purchasedetail.companycode
+where ptype='PURCHASE RETURN' and purchasemain.trndate >=@day1 and purchasemain.trndate <@day2
+group by itemmst.itemcode,itemmst.itemname,purchasemain.companycode,shopcode,purchasemain.yearcode
+union all
+-- ==========for deducting the qunatities form the storage of the stock from where the items has been transferred from========
+select itemmst.itemcode,itemname,0 as rate,(-1)*sum(qnty) as opening_stock,0 as bottles_purchased,0 as bottles_sold,0 as stock,stk_transfer_detail.companycode,shopcode_frm as storecode,stk_transfer_detail.yearcode
+from stk_transfer_detail
+join itemmst on itemmst.itemcode=stk_transfer_detail.itemcode and stk_transfer_detail.companycode=itemmst.companycode
+join stk_transfer_main
+on stk_transfer_main.companycode=stk_transfer_detail.companycode and stk_transfer_main.yearcode=stk_transfer_detail.yearcode and stk_transfer_main.trnno=stk_transfer_detail.trnno
+where stk_transfer_main.trndate>=@day1 and stk_transfer_main.trndate<@day2
+group by itemmst.itemcode,itemmst.itemname,stk_transfer_detail.companycode,shopcode_frm,stk_transfer_detail.yearcode
+union all
+-- ========for adding the qunatities to the storage of the stock  where the items has been transferred to===================
+select itemmst.itemcode,itemname,0 as rate,sum(qnty) as opening_stock,0 as bottles_purchased,0 as bottles_sold,0 as stock,stk_transfer_detail.companycode,shopcode_to as storecode,stk_transfer_detail.yearcode
+from stk_transfer_detail
+join itemmst on itemmst.itemcode=stk_transfer_detail.itemcode and stk_transfer_detail.companycode=itemmst.companycode
+join stk_transfer_main
+on stk_transfer_main.companycode=stk_transfer_detail.companycode and stk_transfer_main.yearcode=stk_transfer_detail.yearcode and stk_transfer_main.trnno=stk_transfer_detail.trnno
+where stk_transfer_main.trndate>=@day1 and stk_transfer_main.trndate<@day2
+group by itemmst.itemcode,itemmst.itemname,stk_transfer_detail.companycode,shopcode_to,stk_transfer_detail.yearcode
+union all
+-- =====Query for deducting the breakage from the purchase =========
+select breakagedetail.itemcode,itemname,0 as rate,-1*sum(quantity) as opening_stock,0 as bottles_purchased,0 as bottles_sold,0 as stock,breakagedetail.companycode,shopcode,breakagedetail.yearcode
+from breakagedetail
+join breakagemain
+on breakagedetail.companycode=breakagemain.companycode
+and breakagedetail.yearcode=breakagemain.yearcode
+and breakagedetail.trnno=breakagemain.trnno
+join itemmst 
+on itemmst.itemcode=breakagedetail.itemcode
+and itemmst.companycode=itemmst.companycode
+where receivd='False' and breakagemain.trndate>=@day1 and breakagemain.trndate<@day2
+group by breakagedetail.itemcode,itemname,breakagedetail.companycode,shopcode,breakagedetail.yearcode
+union all
+-- ======part 2 from >=day2 to <=day3=============
+-- ==========query for getting the number of items sold=========
+select itemmst.itemcode,itemmst.itemname,rate,0 as opening_stock,0 as bottles_purchased,sum(qnty) as bottles_sold,0 as stock,salesbillmain.companycode,storecode,salesbillmain.yearcode 
+from salesbillmain
+join salesbilldetail 
+on salesbillmain.companycode=salesbilldetail.companycode and salesbillmain.yearcode=salesbilldetail.yearcode and salesbillmain.trnno=salesbilldetail.trnno
+join itemmst on itemmst.itemcode=salesbilldetail.itemcode and salesbilldetail.companycode=itemmst.companycode
+where salestype='cash' and salesbillmain.trndate >=@day2 and salesbillmain.trndate <=@day3 
+or salestype='credit card' and salesbillmain.trndate >=@day2 and salesbillmain.trndate <=@day3 
+or  salestype ='credit account' and salesbillmain.trndate >=@day2 and salesbillmain.trndate <=@day3
+group by itemmst.itemcode,itemmst.itemname,rate,salesbillmain.companycode,storecode,salesbillmain.yearcode
+union all
+-- ========query for subtracting the returned bottles from the sold bottles=====
+select itemmst.itemcode,itemmst.itemname,rate,0 as opening_stock,0 as bottles_purchased,(-1)*sum(qnty) as bottles_sold,0 as stock,salesbillmain.companycode,storecode,salesbillmain.yearcode 
+from salesbillmain
+join salesbilldetail 
+on salesbillmain.companycode=salesbilldetail.companycode and salesbillmain.yearcode=salesbilldetail.yearcode and salesbillmain.trnno=salesbilldetail.trnno
+join itemmst on itemmst.itemcode=salesbilldetail.itemcode and salesbilldetail.companycode=itemmst.companycode
+where salestype='return' and salesbillmain.trndate >=@day2 and salesbillmain.trndate <=@day3 
+group by itemmst.itemcode,itemmst.itemname,rate,salesbillmain.companycode,storecode,salesbillmain.yearcode
+union all
+-- =======query for getting the number of bottles purchased================
+select itemmst.itemcode,itemmst.itemname,0 as rate,0 as opening_stock,sum(itemquantity) as bottles_purchased,0 as bottles_sold,0 as stock,purchasemain.companycode,shopcode as storecode,purchasemain.yearcode 
+from purchasemain
+join purchasedetail 
+on purchasedetail.companycode=purchasemain.companycode
+and purchasedetail.trnno=purchasemain.trnno
+and purchasedetail.yearcode=purchasemain.yearcode
+join itemmst on itemmst.itemcode=purchasedetail.itemcode
+and itemmst.companycode=purchasedetail.companycode
+where ptype='PURCHASE' and purchasemain.trndate >=@day2 and purchasemain.trndate <=@day3
+group by itemmst.itemcode,itemmst.itemname,purchasemain.companycode,shopcode,purchasemain.yearcode
+union all
+--- ==============query for subtracting the returned bottles from the purchased bottles======
+select itemmst.itemcode,itemmst.itemname,0 as rate,0 as opening_stock,(-1)*sum(itemquantity) as bottles_purchased,0 as bottles_sold,0 as stock,purchasemain.companycode,shopcode as storecode,purchasemain.yearcode 
+from purchasemain
+join purchasedetail 
+on purchasedetail.companycode=purchasemain.companycode
+and purchasedetail.trnno=purchasemain.trnno
+and purchasedetail.yearcode=purchasemain.yearcode
+join itemmst on itemmst.itemcode=purchasedetail.itemcode
+and itemmst.companycode=purchasedetail.companycode
+where ptype='PURCHASE RETURN' and purchasemain.trndate >=@day2 and purchasemain.trndate <=@day3
+group by itemmst.itemcode,itemmst.itemname,purchasemain.companycode,shopcode,purchasemain.yearcode
+union all
+-- ==========for deducting the qunatities form the storage of the stock from where the items has been transferred from========
+select itemmst.itemcode,itemname,0 as rate,0 as opening_stock,0 as bottles_purchased,0 as bottles_sold,(-1)*sum(qnty) as stock,stk_transfer_detail.companycode,shopcode_frm as storecode,stk_transfer_detail.yearcode
+from stk_transfer_detail
+join itemmst on itemmst.itemcode=stk_transfer_detail.itemcode and stk_transfer_detail.companycode=itemmst.companycode
+join stk_transfer_main
+on stk_transfer_main.companycode=stk_transfer_detail.companycode and stk_transfer_main.yearcode=stk_transfer_detail.yearcode and stk_transfer_main.trnno=stk_transfer_detail.trnno
+where stk_transfer_main.trndate>=@day2 and stk_transfer_main.trndate<=@day3
+group by itemmst.itemcode,itemmst.itemname,stk_transfer_detail.companycode,shopcode_frm,stk_transfer_detail.yearcode
+union all
+-- ========for adding the qunatities to the storage of the stock  where the items has been transferred to ===================
+select itemmst.itemcode,itemname,0 as rate,0 as opening_stock,0 as bottles_purchased,0 as bottles_sold,sum(qnty) as stock,stk_transfer_detail.companycode,shopcode_to as storecode,stk_transfer_detail.yearcode
+from stk_transfer_detail
+join itemmst on itemmst.itemcode=stk_transfer_detail.itemcode and stk_transfer_detail.companycode=itemmst.companycode
+join stk_transfer_main
+on stk_transfer_main.companycode=stk_transfer_detail.companycode and stk_transfer_main.yearcode=stk_transfer_detail.yearcode and stk_transfer_main.trnno=stk_transfer_detail.trnno
+where stk_transfer_main.trndate>=@day2 and stk_transfer_main.trndate<=@day3
+group by itemmst.itemcode,itemmst.itemname,stk_transfer_detail.companycode,shopcode_to,stk_transfer_detail.yearcode
+union all 
+-- =====query for subtracting the breakageentry form the stock ==========
+select breakagedetail.itemcode,itemname,0 as rate,0 as opening_stock,0 as bottles_purchased,0 as bottles_sold,-1*sum(quantity) as stock,breakagedetail.companycode,shopcode,breakagedetail.yearcode
+from breakagedetail
+join breakagemain
+on breakagedetail.companycode=breakagemain.companycode
+and breakagedetail.yearcode=breakagemain.yearcode
+and breakagedetail.trnno=breakagemain.trnno
+join itemmst 
+on itemmst.itemcode=breakagedetail.itemcode
+and itemmst.companycode=itemmst.companycode
+where receivd='False' 
+and breakagemain.trndate>=@day2 
+and breakagemain.trndate<=@day3
+group by breakagedetail.itemcode,itemname,breakagedetail.companycode,shopcode,breakagedetail.yearcode
+)x 
+group by itemcode,itemname,rate,companycode,storecode,yearcode
+
+
+
+------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------
+
+
+4)
+
+Execute following sql
+
+
+
+CREATE function [dbo].[xcise_stock](@day1 as datetime,@day2 as datetime,@day3 as datetime,@companycode as int,@yearcode as int) returns table
+as
+return
+SELECT @day2 as trndate,groupname,categoryname,ml,qtype,qnty,party,batch from(
+SELECT groupname,categoryname,ml,'0 OPENING' AS QTYPE ,SUM(opening_stock) AS qnty,'' as party,''as batch
+FROM dbo.opening_closing_stock(@day1,@day2,@day3) 
+join itemmst ON itemmst.itemcode = opening_closing_stock.itemcode AND itemmst.companycode = opening_closing_stock.companycode 
+join groupmst ON groupmst.groupcode = itemmst.groupcode AND groupmst.companycode = itemmst.companycode 
+join categorymst ON itemmst.companycode = categorymst.companycode AND itemmst.categorycode = categorymst.categorycode 
+WHERE opening_closing_stock.companycode = @companycode AND opening_closing_stock.yearcode = @yearcode 
+GROUP BY groupname,categoryname,ml 
+
+union all
+
+--SELECT groupname,categoryname,ml,'1 PURCHASE' AS QTYPE ,SUM(bottles_purchased) AS qnty, '' as party,'' as batch
+--FROM dbo.opening_closing_stock(@day1,@day2,@day3) 
+--join itemmst ON itemmst.itemcode = opening_closing_stock.itemcode AND itemmst.companycode = opening_closing_stock.companycode 
+--join groupmst ON groupmst.groupcode = itemmst.groupcode AND groupmst.companycode = itemmst.companycode 
+--join categorymst ON itemmst.companycode = categorymst.companycode AND itemmst.categorycode = categorymst.categorycode 
+--WHERE opening_closing_stock.companycode = @companycode AND opening_closing_stock.yearcode =  @yearcode
+--GROUP BY groupname,categoryname,ml
+
+SELECT groupname,categoryname,ml,'1 PURCHASE' AS QTYPE ,SUM(bottles_purchased) AS qnty,
+	STUFF((
+		select name +', ' 
+		from purchasemain
+		join ledger on purchasemain.companycode=ledger.companycode
+		and purchasemain.suppliercode=ledger.ledcode
+		WHERE purchasemain.companycode = @companycode AND purchasemain.yearcode =  @yearcode and purchasemain.trndate =@day2
+		group by name
+		FOR XML PATH (''))
+  ,1,2,'') AS party,
+	STUFF((
+		select batchno +', ' 
+		from purchasemain
+		join purchasedetail on purchasemain.companycode=purchasedetail.companycode
+		and purchasemain.yearcode=purchasedetail.yearcode
+		and purchasemain.trnno=purchasedetail.trnno
+		WHERE purchasemain.companycode = @companycode AND purchasemain.yearcode =  @yearcode and purchasemain.trndate =@day2
+		group by batchno
+		FOR XML PATH (''))
+  ,1,2,'') AS batch
+FROM dbo.opening_closing_stock(@day1,@day2,@day3) 
+join itemmst ON itemmst.itemcode = opening_closing_stock.itemcode AND itemmst.companycode = opening_closing_stock.companycode 
+join groupmst ON groupmst.groupcode = itemmst.groupcode AND groupmst.companycode = itemmst.companycode 
+join categorymst ON itemmst.companycode = categorymst.companycode AND itemmst.categorycode = categorymst.categorycode 
+WHERE opening_closing_stock.companycode = @companycode AND opening_closing_stock.yearcode =  @yearcode
+GROUP BY groupname,categoryname,ml
+
+
+union all
+SELECT groupname,categoryname,ml,'2 TOTAL' AS QTYPE ,SUM(opening_stock+bottles_purchased) AS qnty ,'' as party,''as batch
+FROM dbo.opening_closing_stock(@day1,@day2,@day3) 
+join itemmst ON itemmst.itemcode = opening_closing_stock.itemcode AND itemmst.companycode = opening_closing_stock.companycode 
+join groupmst ON groupmst.groupcode = itemmst.groupcode AND groupmst.companycode = itemmst.companycode 
+join categorymst ON itemmst.companycode = categorymst.companycode AND itemmst.categorycode = categorymst.categorycode 
+WHERE opening_closing_stock.companycode =@companycode AND opening_closing_stock.yearcode = @yearcode
+GROUP BY groupname,categoryname,ml 
+union all
+SELECT groupname,categoryname,ml,'3 CLOSING' AS QTYPE ,SUM(stock) AS qnty ,'' as party,''as batch
+FROM dbo.opening_closing_stock(@day1,@day2,@day3) 
+join itemmst ON itemmst.itemcode = opening_closing_stock.itemcode AND itemmst.companycode = opening_closing_stock.companycode 
+join groupmst ON groupmst.groupcode = itemmst.groupcode AND groupmst.companycode = itemmst.companycode 
+join categorymst ON itemmst.companycode = categorymst.companycode AND itemmst.categorycode = categorymst.categorycode 
+WHERE opening_closing_stock.companycode = @companycode AND opening_closing_stock.yearcode = @yearcode
+GROUP BY groupname,categoryname,ml
+UNION ALL
+SELECT groupname,categoryname,ml,'4 SALES' AS QTYPE ,SUM(bottles_sold) AS qnty ,'' as party,''as batch
+FROM dbo.opening_closing_stock(@day1,@day2,@day3) 
+join itemmst ON itemmst.itemcode = opening_closing_stock.itemcode AND itemmst.companycode = opening_closing_stock.companycode 
+join groupmst ON groupmst.groupcode = itemmst.groupcode AND groupmst.companycode = itemmst.companycode 
+join categorymst ON itemmst.companycode = categorymst.companycode AND itemmst.categorycode = categorymst.categorycode 
+WHERE opening_closing_stock.companycode =@companycode AND opening_closing_stock.yearcode = @yearcode
+GROUP BY groupname,categoryname,ml 
+
+--UNION ALL
+--SELECT groupname,categoryname,ml,'5 SALES IN BL' AS QTYPE ,sum(convert(numeric(4,2),(ml*bottles_sold/1000)) )AS qnty ,'' as party,''as batch
+--FROM dbo.opening_closing_stock(@day1,@day2,@day3) 
+--join itemmst ON itemmst.itemcode = opening_closing_stock.itemcode AND itemmst.companycode = opening_closing_stock.companycode 
+--join groupmst ON groupmst.groupcode = itemmst.groupcode AND groupmst.companycode = itemmst.companycode 
+--join categorymst ON itemmst.companycode = categorymst.companycode AND itemmst.categorycode = categorymst.categorycode 
+--WHERE opening_closing_stock.companycode =@companycode AND opening_closing_stock.yearcode = @yearcode
+--GROUP BY groupname,categoryname,ml
+
+) as x
+
+
+
+

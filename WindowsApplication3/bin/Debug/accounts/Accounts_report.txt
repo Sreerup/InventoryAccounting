@@ -1,0 +1,294 @@
+create view [dbo].[vw_receipt_accounts]
+as
+
+-- ====part 1 getting the cash sale amoutns without the discount part ======
+-- ===selecting all the sales amount form the countersales =======
+-- ===calculating part where sales type is not return =========
+
+--====part taken form receipt main and details =======================
+-- ====double accounting for the cash sale from receipt_main ======================
+-- ====Crediting the sale account ==============================
+select vchdate as date,receipt_main.companycode,receipt_main.yearcode,head_account as ledgercode,'Receipt' as Vchtype,vchno as billno,name,0 as debit,amount_paid+isnull(tax_amount,0) as credit
+from receipt_main
+join ledger 
+on ledger.ledcode=receipt_main.head_account
+left join sales_tax
+on sales_tax.companycode=receipt_main.companycode
+and sales_tax.yearcode=receipt_main.yearcode
+and sales_tax.trnno=receipt_main.vchno
+union all
+-- ====debiting the cash account ================================
+select vchdate as date,receipt_main.companycode,receipt_main.yearcode,client_account as ledgercode,'Receipt' as Vchtype,vchno as billno,name,amount_paid+isnull(tax_amount,0) as debit,0 as credit
+from receipt_main
+join ledger 
+on ledger.ledcode=receipt_main.client_Account
+left join sales_tax
+on sales_tax.companycode=receipt_main.companycode
+and sales_tax.yearcode=receipt_main.yearcode
+and sales_tax.trnno=receipt_main.vchno
+-- ====end of double accounting for cash sale ===================
+union all
+-- ======double Accounting For discount on cash sale from receipt_main========
+-- ====Crediting the cash account=====
+select vchdate as date,receipt_main.companycode,yearcode,head_account as ledgercode,'Receipt' as Vchtype,vchno as billno,name,0 as debit,discount as credit 
+from receipt_main
+join ledger on ledger.ledcode=receipt_main.head_account
+and ledger.companycode=receipt_main.companycode
+where discount<>0 
+union all
+-- ====Debiting the discount ====
+select vchdate as date,receipt_main.companycode,yearcode,discount_account_head as ledgercode,'Receipt' as Vchtype,vchno as billno,name,discount as debit,0 as credit 
+from receipt_main
+join ledger on ledger.ledcode=receipt_main.discount_account_head
+and ledger.companycode=receipt_main.companycode
+where discount<>0 
+-- =====End of double accounting for the receipt voucher discount =====
+union all
+--==== double accounting for the sales taxes============
+-- ===crediting the surcharge amount to the cash/bank account ==========
+select vchdate as date,receipt_main.companycode,receipt_main.yearcode,cash_bank_book as ledgercode,'Sale' as Vchtype,receipt_main.vchno as billno,name,0 as debit,tax_amount as credit
+from sales_tax
+join receipt_main
+on receipt_main.companycode=sales_tax.companycode
+and receipt_main.yearcode=sales_tax.yearcode
+and receipt_main.vchno=sales_tax.trnno
+join ledger
+on ledger.companycode=sales_tax.companycode
+and ledger.ledcode=sales_tax.cash_bank_book
+union all
+-- =====debiting the surcharge amount to tthe surcharge account =======
+select vchdate as date,receipt_main.companycode,receipt_main.yearcode,tax_book as ledgercode,'Sale' as Vchtype,receipt_main.vchno as billno,name,tax_amount as debit,0 as credit
+from sales_tax
+join receipt_main
+on receipt_main.companycode=sales_tax.companycode
+and receipt_main.yearcode=sales_tax.yearcode
+and receipt_main.vchno=sales_tax.trnno
+join ledger
+on ledger.companycode=sales_tax.companycode
+and ledger.ledcode=sales_tax.tax_book
+--===end of double account for sales taxes=======
+union all
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- =====part being taken from sales bill main and details  ============
+-- =====Crediting the amount in the counter sale===========
+select trndate as date,salesbillmain.companycode,yearcode,account_head as ledgercode,'Sale' as Vchtype,trnno as billno,name,0 as debit,netamount as credit 
+from salesbillmain 
+join ledger on ledger.ledcode=salesbillmain.account_head and ledger.companycode=salesbillmain.companycode
+where salestype='CREDIT ACCOUNT'
+union all
+-- ====debiting the amount in the dabtor =======
+select trndate as date,salesbillmain.companycode,yearcode,ledgercode as ledgercode,'Sale' as Vchtype,trnno as billno,name,netamount as debit,0 as credit 
+from salesbillmain 
+join ledger  on ledger.ledcode=salesbillmain.ledgercode and ledger.companycode=salesbillmain.companycode
+where  salestype='CREDIT ACCOUNT'
+-- =====End Of Double Accounting For Cash Sale  OR CREDITY CARD SALE OR CREDIT aCCOUNT SALE ====
+union all
+-- ======double accounting the credit sales discount from sales bill main ===============
+-- ========Crediting the client account/debgtor account ==================
+select trndate as date,salesbillmain.companycode,yearcode,account_head as ledgercode,'Sale' as Vchtype,trnno as billno,name,0 as debit,discamount as credit 
+from salesbillmain 
+join ledger 
+on ledger.ledcode=salesbillmain.account_head 
+and ledger.companycode=salesbillmain.companycode
+where salestype='CREDIT ACCOUNT' and discamount<>0
+union all
+-- ======Debiting the sales account ======================
+select trndate as date,salesbillmain.companycode,yearcode,discount_account_head as ledgercode,'Sale' as Vchtype,trnno as billno,name,discamount as debit,0 as credit 
+from salesbillmain 
+join ledger on ledger.ledcode=salesbillmain.discount_account_head and ledger.companycode=salesbillmain.companycode
+where salestype='CREDIT ACCOUNT' and discamount<>0
+-- =====End of double accounting for the credit sale discount =====
+-- ====end of the part taken form the sales bill main and details ====
+union all
+
+
+
+
+
+
+
+
+
+-- ======part for sales Return ========================================
+-- ===debiting the sale Account =======================
+select trndate as date,salesbillmain.companycode,yearcode,account_head as ledgercode,'Return' as Vchtype,trnno as billno,name,netamount as debit,0 as credit 
+from salesbillmain 
+join ledger 
+on ledger.ledcode=salesbillmain.account_head 
+and ledger.companycode=salesbillmain.companycode
+where salestype='RETURN'
+-- ===crediting the Cash Account===================
+union all
+select trndate as date,salesbillmain.companycode,yearcode,ledgercode as ledgercode,'Return' as Vchtype,trnno as billno,name,0 as debit,netamount as credit 
+from salesbillmain 
+join ledger on 
+ledger.ledcode=salesbillmain.ledgercode 
+and ledger.companycode=salesbillmain.companycode
+where salestype='RETURN'
+-- ======end of cash part for the sales return -----------
+union all
+-- ===discount part for salesreturn ========
+-- ===crediting the discount account ====
+select trndate as date,salesbillmain.companycode,yearcode,discount_account_head as ledgercode,'Return' as Vchtype,trnno as billno,name,0 as debit,discamount as credit 
+from salesbillmain 
+join ledger 
+on ledger.ledcode=salesbillmain.discount_account_head 
+and ledger.companycode=salesbillmain.companycode
+where salestype='RETURN'
+and discamount<>0
+union all
+-- ==debiting the cash account =====
+select trndate as date,salesbillmain.companycode,yearcode,account_head as ledgercode,'Return' as Vchtype,trnno as billno,name,discamount as debit,0 as credit 
+from salesbillmain 
+join ledger 
+on ledger.ledcode=salesbillmain.account_head 
+and ledger.companycode=salesbillmain.companycode
+where salestype='RETURN'
+and discamount<>0
+-- =====end of the discounting part for the cash sale return =======
+union all 
+
+
+
+
+
+
+-- =========Double Accounting the Purchase=================
+-- =====debiting the net amount to the purchase account =====
+select trndate as date,purchasemain.companycode,yearcode,purchaseacccode as ledgercode,'Purchase' as Vchtype,trnno as billno,name,totnetamt as debit,0 as credit
+from purchasemain
+join ledger 
+on ledger.ledcode=purchasemain.purchaseacccode
+and ledger.companycode=purchasemain.companycode
+where ptype='PURCHASE'
+union all
+-- ====credititng the net amount to the supplier account ====
+select trndate as date,purchasemain.companycode,yearcode,suppliercode as ledgercode,'Purchase' as Vchtype,trnno as billno,name,0 as debit,totnetamt as credit
+from purchasemain
+join ledger 
+on ledger.ledcode=purchasemain.suppliercode
+and ledger.companycode=purchasemain.companycode
+where ptype='PURCHASE'
+-- =====end of double accounting for the purchase =====
+union all
+
+--===crediting the tax amount to the tax code that has minus attached to it =====
+select docdate as date,purchasetaxdetail.companycode,purchasemain.yearcode,taxdetail.ledcode as ledgercode,'purchase' as vchtype,purchasemain.trnno as billno,name,0 as debit,purchasetaxdetail.taxamount as credit
+from purchasetaxdetail
+join taxdetail 
+on taxdetail.companycode=purchasetaxdetail.companycode
+and taxdetail.schemecode=purchasetaxdetail.schemecode
+and taxdetail.taxcode=purchasetaxdetail.taxcode
+join purchasemain 
+on purchasemain.companycode=purchasetaxdetail.companycode
+and purchasemain.yearcode=purchasetaxdetail.yearcode
+and purchasemain.trnno=purchasetaxdetail.trnno
+join ledger 
+on ledger.companycode=taxdetail.companycode
+and ledger.ledcode=taxdetail.ledcode
+where sig='-'
+union all
+-- ===debiting the tax amount to the creditor that has a minus attached to it ===
+select docdate as date,purchasetaxdetail.companycode,purchasemain.yearcode,purchaseacccode as ledgercode,'purchase' as vchtype,purchasemain.trnno as billno,name,purchasetaxdetail.taxamount as debit,0 as credit
+from purchasetaxdetail
+join taxdetail 
+on taxdetail.companycode=purchasetaxdetail.companycode
+and taxdetail.schemecode=purchasetaxdetail.schemecode
+and taxdetail.taxcode=purchasetaxdetail.taxcode
+join purchasemain 
+on purchasemain.companycode=purchasetaxdetail.companycode
+and purchasemain.yearcode=purchasetaxdetail.yearcode
+and purchasemain.trnno=purchasetaxdetail.trnno
+join ledger 
+on ledger.companycode=purchasemain.companycode
+and ledger.ledcode=purchasemain.purchaseacccode
+where sig='-'
+union all
+-- ====debiting the tax to the tax code that has a plus attached to it ====
+select docdate as date,purchasetaxdetail.companycode,purchasemain.yearcode,taxdetail.ledcode as ledgercode,'purchase' as vchtype,purchasemain.trnno as billno,
+name,
+purchasetaxdetail.taxamount as debit,0 as credit
+from purchasetaxdetail
+join taxdetail 
+on taxdetail.companycode=purchasetaxdetail.companycode
+and taxdetail.schemecode=purchasetaxdetail.schemecode
+and taxdetail.taxcode=purchasetaxdetail.taxcode
+join purchasemain 
+on purchasemain.companycode=purchasetaxdetail.companycode
+and purchasemain.yearcode=purchasetaxdetail.yearcode
+and purchasemain.trnno=purchasetaxdetail.trnno
+join ledger 
+on ledger.companycode=taxdetail.companycode
+and ledger.ledcode=taxdetail.ledcode
+where sig='+'
+union all
+-- ===crediting the tax amount to the creditor that has a minus attached to it ===
+select docdate as date,purchasetaxdetail.companycode,purchasemain.yearcode,purchaseacccode as ledgercode,'purchase' as vchtype,purchasemain.trnno as billno,name,0 as debit,purchasetaxdetail.taxamount as credit
+from purchasetaxdetail
+join taxdetail 
+on taxdetail.companycode=purchasetaxdetail.companycode
+and taxdetail.schemecode=purchasetaxdetail.schemecode
+and taxdetail.taxcode=purchasetaxdetail.taxcode
+join purchasemain 
+on purchasemain.companycode=purchasetaxdetail.companycode
+and purchasemain.yearcode=purchasetaxdetail.yearcode
+and purchasemain.trnno=purchasetaxdetail.trnno
+join ledger 
+on ledger.companycode=purchasemain.companycode
+and ledger.ledcode=purchasemain.purchaseacccode
+where sig='+'
+-- =====end of double accountitng fo rthe purchase tax =====
+union all
+
+
+
+
+
+
+
+-- ====dounle accounting the payment voucher with the cash voucher  ====
+-- ===debeting the head account ==========================
+select vchdate as date,payment_main.companycode,yearcode,head_account as ledgercode,'Payment' as Vchtype,vchno as billno,name,amount_paid as debit,0 as credit
+from payment_main
+join ledger on ledger.ledcode=payment_main.head_account
+and ledger.companycode=payment_main.companycode
+union all
+-- =========crediting to the client account ===========
+select vchdate as date,payment_main.companycode,yearcode,client_account as ledgercode,'Payment' as Vchtype,vchno as billno,name,0 as debit,amount_paid as credit
+from payment_main
+join ledger on ledger.ledcode=payment_main.client_account
+and ledger.companycode=payment_main.companycode
+-- ======end of double accounting for the payment voucher ============
+union all
+
+-- =====doublle accounting the discount of the payment voucher ==================
+-- ====crediting the discout account  ==============================
+select vchdate as date,payment_main.companycode,yearcode,discount_account_head as ledgercode,'Payment' as Vchtype,vchno as billno,name,0 as debit,discount as credit
+from payment_main
+join ledger on ledger.ledcode=payment_main.discount_account_head
+and ledger.companycode=payment_main.companycode
+where discount<>0
+union all
+-- ====debiting to the cah account =================================
+select vchdate as date,payment_main.companycode,yearcode,head_account as ledgercode,'Payment' as Vchtype,vchno as billno,name,discount as debit,0 as credit
+from payment_main
+join ledger on ledger.ledcode=payment_main.head_account
+and ledger.companycode=payment_main.companycode
+where discount<>0
+-- =====end of double accounting for the discoutn of the voucher ========
+

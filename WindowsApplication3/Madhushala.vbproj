@@ -1,0 +1,1005 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8A42EE8A-4ED9-4B90-88BE-35D1233A9450}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>Madhushala.My.MyApplication</StartupObject>
+    <RootNamespace>Madhushala</RootNamespace>
+    <AssemblyName>Madhushala</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>WindowsForms</MyType>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <OptionExplicit>On</OptionExplicit>
+    <OptionCompare>Binary</OptionCompare>
+    <OptionStrict>Off</OptionStrict>
+    <OptionInfer>On</OptionInfer>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <ManifestCertificateThumbprint>C925A24FFD3A51F931DA79156C0955A1994FCC7A</ManifestCertificateThumbprint>
+    <ManifestKeyFile>Madhushala_TemporaryKey.pfx</ManifestKeyFile>
+    <GenerateManifests>true</GenerateManifests>
+    <SignManifests>false</SignManifests>
+    <ApplicationIcon>Resources\MAdhushala.ico</ApplicationIcon>
+    <SignAssembly>false</SignAssembly>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+    <PublishUrl>E:\Madhushala_Enamur\Publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.0</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>Madhushala.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>Madhushala.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ABNExportTool, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=11.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
+    <Reference Include="Microsoft.ReportViewer.Common, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DAL.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DAL.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="frm_AboutBox1.Designer.vb">
+      <DependentUpon>frm_AboutBox1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frm_AboutBox1.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_accreate.designer.vb">
+      <DependentUpon>frm_accreate.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frm_accreate.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_bedit.designer.vb">
+      <DependentUpon>frm_bedit.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frm_bedit.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_breakageentry.designer.vb">
+      <DependentUpon>frm_breakageentry.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frm_breakageentry.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_breakage_gridsearch.designer.vb">
+      <DependentUpon>frm_breakage_gridsearch.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frm_breakage_gridsearch.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Class1.vb" />
+    <Compile Include="frm_companyparameter.Designer.vb">
+      <DependentUpon>frm_companyparameter.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frm_companyparameter.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_ContainerForm.designer.vb">
+      <DependentUpon>frm_ContainerForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frm_ContainerForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_Create_rate_name.Designer.vb">
+      <DependentUpon>frm_Create_rate_name.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frm_Create_rate_name.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ds_Accounts.vb">
+      <DependentUpon>ds_Accounts.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ds_bulk_liter.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ds_bulk_liter.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ds_bulk_liter.vb">
+      <DependentUpon>ds_bulk_liter.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ds_excise_report.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ds_excise_report.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ds_return.vb">
+      <DependentUpon>ds_return.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="frm_Opening_balance.Designer.vb">
+      <DependentUpon>frm_Opening_balance.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frm_Opening_balance.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="rep_bulk_liter.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rep_bulk_liter.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="rep_excise.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rep_excise.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="rep_sales.vb">
+      <DependentUpon>rep_sales.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="rep_sales_bill_wise.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rep_sales_bill_wise.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="rep_sales_party_wise.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rep_sales_party_wise.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="rep_stock_val_closing.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rep_stock_val_closing.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="frm_countersales.designer.vb">
+      <DependentUpon>frm_countersales.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frm_countersales.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_createcompany.Designer.vb">
+      <DependentUpon>frm_createcompany.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frm_createcompany.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DGVPrinter.vb" />
+    <Compile Include="frm_data_fetch.designer.vb">
+      <DependentUpon>frm_data_fetch.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frm_data_fetch.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ds_Accounts.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ds_Accounts.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ds_breakage.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ds_breakage.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ds_opening_closing.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ds_opening_closing.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ds_purchase.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ds_purchase.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ds_purchase.vb">
+      <DependentUpon>ds_purchase.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ds_return.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ds_return.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ds_sale.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ds_sale.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ds_stock.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ds_stock.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ds_stock.vb">
+      <DependentUpon>ds_stock.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ds_stock_itemwise.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ds_stock_itemwise.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="frm_ExpenceForm.Designer.vb">
+      <DependentUpon>frm_ExpenceForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frm_ExpenceForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_MainForm.designer.vb">
+      <DependentUpon>frm_MainForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frm_MainForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_gridsearch.designer.vb">
+      <DependentUpon>frm_gridsearch.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frm_gridsearch.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_itemmstadd.designer.vb">
+      <DependentUpon>frm_itemmstadd.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frm_itemmstadd.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="itemmstmodule.vb" />
+    <Compile Include="frm_ledger.designer.vb">
+      <DependentUpon>frm_ledger.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frm_ledger.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_login.designer.vb">
+      <DependentUpon>frm_login.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frm_login.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Module1.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="frm_payment_voucher.designer.vb">
+      <DependentUpon>frm_payment_voucher.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frm_payment_voucher.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Print_Class.vb" />
+    <Compile Include="frm_purchase.Designer.vb">
+      <DependentUpon>frm_purchase.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frm_purchase.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_receipt_voucher.Designer.vb">
+      <DependentUpon>frm_receipt_voucher.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frm_receipt_voucher.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_ReportForm.designer.vb">
+      <DependentUpon>frm_ReportForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frm_ReportForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_ReportSelector.designer.vb">
+      <DependentUpon>frm_ReportSelector.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frm_ReportSelector.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="rep_Accounts.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rep_Accounts.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="rep_breakage.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rep_breakage.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="rep_cat_register.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rep_cat_register.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="rep_purchase.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rep_purchase.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="rep_purchase_itemwise.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rep_purchase_itemwise.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="rep_purchase_summary.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rep_purchase_summary.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="rep_return.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rep_return.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="rep_sales_ml_wise.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rep_sales_ml_wise.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="rep_stock.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rep_stock.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="rep_stock_itemwise.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rep_stock_itemwise.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="rep_stock_val_det.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rep_stock_val_det.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="frm_SalesRate.designer.vb">
+      <DependentUpon>frm_SalesRate.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frm_SalesRate.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="rep_Sales_Bill.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rep_Sales_Bill.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="rep_sales_statement.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rep_sales_statement.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ds_sales_statement.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ds_sales_statement.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ds_sales_statement.vb">
+      <DependentUpon>ds_sales_statement.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="frm_sign_in.designer.vb">
+      <DependentUpon>frm_sign_in.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frm_sign_in.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_stocktransfer.designer.vb">
+      <DependentUpon>frm_stocktransfer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frm_stocktransfer.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_storage.designer.vb">
+      <DependentUpon>frm_storage.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frm_storage.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_tally_Import.Designer.vb">
+      <DependentUpon>frm_tally_Import.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frm_tally_Import.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_Taxscm.Designer.vb">
+      <DependentUpon>frm_Taxscm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frm_Taxscm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_userinfo.Designer.vb">
+      <DependentUpon>frm_userinfo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frm_userinfo.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_userrights.Designer.vb">
+      <DependentUpon>frm_userrights.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frm_userrights.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="xcise_rep.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>xcise_rep.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="frm_yearcreation.Designer.vb">
+      <DependentUpon>frm_yearcreation.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frm_yearcreation.vb">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="frm_AboutBox1.resx">
+      <DependentUpon>frm_AboutBox1.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_accreate.resx">
+      <DependentUpon>frm_accreate.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_bedit.resx">
+      <DependentUpon>frm_bedit.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_breakageentry.resx">
+      <DependentUpon>frm_breakageentry.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_breakage_gridsearch.resx">
+      <DependentUpon>frm_breakage_gridsearch.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_companyparameter.resx">
+      <DependentUpon>frm_companyparameter.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_ContainerForm.resx">
+      <DependentUpon>frm_ContainerForm.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_Create_rate_name.resx">
+      <DependentUpon>frm_Create_rate_name.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_Opening_balance.resx">
+      <DependentUpon>frm_Opening_balance.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="rep_bulk_liter.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rep_bulk_liter.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="rep_excise.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rep_excise.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="rep_sales.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rep_sales.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="rep_sales_bill_wise.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rep_sales_bill_wise.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="rep_sales_party_wise.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rep_sales_party_wise.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="rep_stock_val_closing.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rep_stock_val_closing.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_countersales.resx">
+      <DependentUpon>frm_countersales.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_createcompany.resx">
+      <DependentUpon>frm_createcompany.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_data_fetch.resx">
+      <DependentUpon>frm_data_fetch.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_ExpenceForm.resx">
+      <DependentUpon>frm_ExpenceForm.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_MainForm.resx">
+      <DependentUpon>frm_MainForm.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_gridsearch.resx">
+      <DependentUpon>frm_gridsearch.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_itemmstadd.resx">
+      <DependentUpon>frm_itemmstadd.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_ledger.resx">
+      <DependentUpon>frm_ledger.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_login.resx">
+      <DependentUpon>frm_login.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_payment_voucher.resx">
+      <DependentUpon>frm_payment_voucher.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_purchase.resx">
+      <DependentUpon>frm_purchase.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_receipt_voucher.resx">
+      <DependentUpon>frm_receipt_voucher.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_ReportForm.resx">
+      <DependentUpon>frm_ReportForm.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_ReportSelector.resx">
+      <DependentUpon>frm_ReportSelector.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="rep_Accounts.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rep_Accounts.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="rep_breakage.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rep_breakage.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="rep_cat_register.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rep_cat_register.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="rep_purchase.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rep_purchase.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="rep_purchase_itemwise.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rep_purchase_itemwise.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="rep_purchase_summary.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rep_purchase_summary.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="rep_return.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rep_return.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="rep_sales_ml_wise.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rep_sales_ml_wise.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="rep_stock.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rep_stock.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="rep_stock_itemwise.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rep_stock_itemwise.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="rep_stock_val_det.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rep_stock_val_det.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_SalesRate.resx">
+      <DependentUpon>frm_SalesRate.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="rep_Sales_Bill.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rep_Sales_Bill.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="rep_sales_statement.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rep_sales_statement.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_sign_in.resx">
+      <DependentUpon>frm_sign_in.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_stocktransfer.resx">
+      <DependentUpon>frm_stocktransfer.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_storage.resx">
+      <DependentUpon>frm_storage.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_tally_Import.resx">
+      <DependentUpon>frm_tally_Import.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_Taxscm.resx">
+      <DependentUpon>frm_Taxscm.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_userinfo.resx">
+      <DependentUpon>frm_userinfo.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_userrights.resx">
+      <DependentUpon>frm_userrights.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="xcise_rep.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>xcise_rep.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_yearcreation.resx">
+      <DependentUpon>frm_yearcreation.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\smallfail.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\smallsuccess.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="BusinessObjects.CrystalReports.10.5">
+      <Visible>False</Visible>
+      <ProductName>Crystal Reports Basic for Visual Studio 2008 %28x86, x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Sql.Server.Express.9.2">
+      <Visible>False</Visible>
+      <ProductName>SQL Server 2005 Express Edition SP2 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{967B4E0D-AD0C-4609-AB67-0FA40C0206D8}" />
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Button.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\madhus.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Switch User.ico" />
+    <None Include="ds_sales_statement.xsc">
+      <DependentUpon>ds_sales_statement.xsd</DependentUpon>
+    </None>
+    <None Include="ds_sales_statement.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ds_sales_statement.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="ds_sales_statement.xss">
+      <DependentUpon>ds_sales_statement.xsd</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ds_stock.xsc">
+      <DependentUpon>ds_stock.xsd</DependentUpon>
+    </None>
+    <None Include="ds_stock.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ds_stock.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="ds_stock.xss">
+      <DependentUpon>ds_stock.xsd</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ds_opening_closing.xsc">
+      <DependentUpon>ds_opening_closing.xsd</DependentUpon>
+    </None>
+    <None Include="ds_opening_closing.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ds_opening_closing.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ds_opening_closing.xss">
+      <DependentUpon>ds_opening_closing.xsd</DependentUpon>
+    </None>
+    <None Include="ds_purchase.xsc">
+      <DependentUpon>ds_purchase.xsd</DependentUpon>
+    </None>
+    <None Include="ds_purchase.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ds_purchase.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="ds_purchase.xss">
+      <DependentUpon>ds_purchase.xsd</DependentUpon>
+    </None>
+    <None Include="ds_stock_itemwise.xsc">
+      <DependentUpon>ds_stock_itemwise.xsd</DependentUpon>
+    </None>
+    <None Include="ds_stock_itemwise.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ds_stock_itemwise.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="ds_stock_itemwise.xss">
+      <DependentUpon>ds_stock_itemwise.xsd</DependentUpon>
+    </None>
+    <None Include="My Project\app.manifest" />
+  </ItemGroup>
+  <ItemGroup>
+    <PublishFile Include="CrystalDecisions.CrystalReports.Engine">
+      <Visible>False</Visible>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="CrystalDecisions.ReportSource">
+      <Visible>False</Visible>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="CrystalDecisions.Shared">
+      <Visible>False</Visible>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="CrystalDecisions.Windows.Forms">
+      <Visible>False</Visible>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Madhushala_Background2.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="DAL.xsc">
+      <DependentUpon>DAL.xsd</DependentUpon>
+    </None>
+    <None Include="DAL.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DAL.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="DAL.xss">
+      <DependentUpon>DAL.xsd</DependentUpon>
+    </None>
+    <None Include="ds_Accounts.xsc">
+      <DependentUpon>ds_Accounts.xsd</DependentUpon>
+    </None>
+    <None Include="ds_Accounts.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ds_Accounts.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="ds_Accounts.xss">
+      <DependentUpon>ds_Accounts.xsd</DependentUpon>
+    </None>
+    <None Include="ds_breakage.xsc">
+      <DependentUpon>ds_breakage.xsd</DependentUpon>
+    </None>
+    <None Include="ds_breakage.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ds_breakage.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="ds_breakage.xss">
+      <DependentUpon>ds_breakage.xsd</DependentUpon>
+    </None>
+    <None Include="ds_bulk_liter.xsc">
+      <DependentUpon>ds_bulk_liter.xsd</DependentUpon>
+    </None>
+    <None Include="ds_bulk_liter.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ds_bulk_liter.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="ds_bulk_liter.xss">
+      <DependentUpon>ds_bulk_liter.xsd</DependentUpon>
+    </None>
+    <None Include="ds_excise_report.xsc">
+      <DependentUpon>ds_excise_report.xsd</DependentUpon>
+    </None>
+    <None Include="ds_excise_report.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ds_excise_report.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="ds_excise_report.xss">
+      <DependentUpon>ds_excise_report.xsd</DependentUpon>
+    </None>
+    <None Include="ds_return.xsc">
+      <DependentUpon>ds_return.xsd</DependentUpon>
+    </None>
+    <None Include="ds_return.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ds_return.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="ds_return.xss">
+      <DependentUpon>ds_return.xsd</DependentUpon>
+    </None>
+    <None Include="ds_sale.xsc">
+      <DependentUpon>ds_sale.xsd</DependentUpon>
+    </None>
+    <None Include="ds_sale.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ds_sale.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ds_sale.xss">
+      <DependentUpon>ds_sale.xsd</DependentUpon>
+    </None>
+    <None Include="Resources\MAdhushala.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

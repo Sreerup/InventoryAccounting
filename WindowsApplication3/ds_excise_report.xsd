@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ds_excise_report" targetNamespace="http://tempuri.org/ds_excise_report.xsd" xmlns:mstns="http://tempuri.org/ds_excise_report.xsd" xmlns="http://tempuri.org/ds_excise_report.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="ds_excise_report" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="ds_excise_report" msprop:Generator_DataSetName="ds_excise_report" msprop:EnableTableAdapterManager="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="dt_excise" msprop:Generator_UserTableName="dt_excise" msprop:Generator_RowDeletedName="dt_exciseRowDeleted" msprop:Generator_RowChangedName="dt_exciseRowChanged" msprop:Generator_RowClassName="dt_exciseRow" msprop:Generator_RowChangingName="dt_exciseRowChanging" msprop:Generator_RowEvArgName="dt_exciseRowChangeEvent" msprop:Generator_RowEvHandlerName="dt_exciseRowChangeEventHandler" msprop:Generator_TableClassName="dt_exciseDataTable" msprop:Generator_TableVarName="tabledt_excise" msprop:Generator_RowDeletingName="dt_exciseRowDeleting" msprop:Generator_TablePropName="dt_excise">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="groupname" msprop:Generator_UserColumnName="groupname" msprop:Generator_ColumnPropNameInRow="groupname" msprop:Generator_ColumnVarNameInTable="columngroupname" msprop:Generator_ColumnPropNameInTable="groupnameColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="ml" msprop:Generator_UserColumnName="ml" msprop:Generator_ColumnPropNameInRow="ml" msprop:Generator_ColumnVarNameInTable="columnml" msprop:Generator_ColumnPropNameInTable="mlColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="qnty" msprop:Generator_UserColumnName="qnty" msprop:Generator_ColumnPropNameInRow="qnty" msprop:Generator_ColumnVarNameInTable="columnqnty" msprop:Generator_ColumnPropNameInTable="qntyColumn" type="xs:double" minOccurs="0" />
+              <xs:element name="type" msprop:Generator_UserColumnName="type" msprop:Generator_ColumnVarNameInTable="columntype" msprop:Generator_ColumnPropNameInRow="type" msprop:Generator_ColumnPropNameInTable="typeColumn" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

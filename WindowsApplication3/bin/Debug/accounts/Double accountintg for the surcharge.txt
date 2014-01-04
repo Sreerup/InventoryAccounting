@@ -1,0 +1,43 @@
+--===crediting the surcharge amount to the sales===========
+select trndate as date,salesbillmain.companycode,salesbillmain.yearcode,account_head as ledgercode,'Sale' as Vchtype,salesbillmain.trnno as billno,name,0 as debit,amount+tax_amount-discamount as credit
+from sales_tax
+join salesbillmain
+on salesbillmain.companycode=sales_tax.companycode
+and salesbillmain.yearcode=sales_tax.yearcode
+and salesbillmain.trnno=sales_tax.trnno
+join ledger
+on ledger.companycode=salesbillmain.companycode
+and ledger.ledcode=salesbillmain.account_head
+union all
+--===debiting the total amount to the cash\bank account===========
+select trndate as date,salesbillmain.companycode,salesbillmain.yearcode,ledgercode,'Sale' as Vchtype,salesbillmain.trnno as billno,name,amount+tax_amount-discamount as debit,0 as credit
+from sales_tax
+join salesbillmain
+on salesbillmain.companycode=sales_tax.companycode
+and salesbillmain.yearcode=sales_tax.yearcode
+and salesbillmain.trnno=sales_tax.trnno
+join ledger
+on ledger.companycode=salesbillmain.companycode
+and ledger.ledcode=salesbillmain.ledgercode
+union all
+-- ===crediting the surcharge amount to the cash/bank account ==========
+select trndate as date,salesbillmain.companycode,salesbillmain.yearcode,cash_bank_book as ledgercode,'Sale' as Vchtype,salesbillmain.trnno as billno,name,0 as debit,tax_amount as credit
+from sales_tax
+join salesbillmain
+on salesbillmain.companycode=sales_tax.companycode
+and salesbillmain.yearcode=sales_tax.yearcode
+and salesbillmain.trnno=sales_tax.trnno
+join ledger
+on ledger.companycode=sales_tax.companycode
+and ledger.ledcode=sales_tax.cash_bank_book
+union all
+-- =====debiting the surcharge amount to tthe surcharge account =======
+select trndate as date,salesbillmain.companycode,salesbillmain.yearcode,tax_book as ledgercode,'Sale' as Vchtype,salesbillmain.trnno as billno,name,tax_amount as debit,0 as credit
+from sales_tax
+join salesbillmain
+on salesbillmain.companycode=sales_tax.companycode
+and salesbillmain.yearcode=sales_tax.yearcode
+and salesbillmain.trnno=sales_tax.trnno
+join ledger
+on ledger.companycode=sales_tax.companycode
+and ledger.ledcode=sales_tax.tax_book

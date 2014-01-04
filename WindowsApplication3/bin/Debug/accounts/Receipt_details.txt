@@ -1,0 +1,36 @@
+
+
+ALTER view [dbo].[vw_receipt_detail] as
+-- =====Single Accounting for credit sale ===========
+--===debiting to the debtors account ======
+select trndate as date,salesbillmain.companycode,yearcode,ledgercode as ledgercode,convert(varchar(max),trnno) as billno,name,amount as debit,0 as credit 
+from salesbillmain 
+join ledger  on ledger.ledcode=salesbillmain.ledgercode and ledger.companycode=salesbillmain.companycode
+where  salestype='CREDIT ACCOUNT'
+union all
+
+
+
+-- === sigle accounting for the receipt========================
+-- =====crediting the amount to the debtors account==============
+select receipt_main.vchdate as date,receipt_main.companycode,receipt_main.yearcode,head_account as ledegercode,convert(varchar(max),trnno) as billno,name,0 as debit,receipt_detail.credit as credit  
+from receipt_main 
+join receipt_detail
+on receipt_main.vchno=receipt_detail.vchno
+and receipt_main.companycode=receipt_detail.companycode
+and receipt_main.yearcode=receipt_detail.yearcode
+join ledger 
+on ledger.companycode=receipt_main.companycode 
+and ledger.ledcode=receipt_main.head_account
+where receipt_type='CREDIT ACCOUNT'
+union all
+
+
+-- ====single accounting for the receipt voucher discount ==
+-- ===credititng the debtor's account ====
+select vchdate as date,receipt_main.companycode,yearcode,head_account as ledgercode,'Voucher no.'+convert(varchar(max),vchno) as billno,name,0 as debit,discount as credit 
+from receipt_main
+join ledger on ledger.ledcode=receipt_main.head_account
+and ledger.companycode=receipt_main.companycode
+where receipt_type='CREDIT ACCOUNT' and discount<>0
+

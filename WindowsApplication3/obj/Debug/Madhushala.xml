@@ -1,0 +1,360 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+Madhushala
+</name>
+</assembly>
+<members>
+<member name="T:Madhushala.ds_sale.salesDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Madhushala.ds_sale.salesRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Madhushala.ds_sale.salesRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Madhushala.ds_sale">
+	<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member><member name="T:Madhushala.ds_purchase.dt_purchase_detailDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Madhushala.ds_purchase.dt_purchase_mainDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Madhushala.ds_purchase.dt_purchase_taxDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Madhushala.ds_purchase.dt_purchase_detailRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Madhushala.ds_purchase.dt_purchase_mainRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Madhushala.ds_purchase.dt_purchase_taxRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Madhushala.ds_purchase.dt_purchase_detailRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Madhushala.ds_purchase.dt_purchase_mainRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Madhushala.ds_purchase.dt_purchase_taxRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Madhushala.ds_purchase">
+	<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member><member name="T:Madhushala.ds_excise_report.dt_exciseDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Madhushala.ds_excise_report.dt_exciseRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Madhushala.ds_excise_report.dt_exciseRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Madhushala.ds_excise_report">
+	<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member><member name="T:Madhushala.ds_opening_closing.table1DataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Madhushala.ds_opening_closing.table1Row">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Madhushala.ds_opening_closing.table1RowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Madhushala.ds_opening_closing">
+	<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member><member name="T:Madhushala.ds_return.dt_returnDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Madhushala.ds_return.dt_informationDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Madhushala.ds_return.dt_returnRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Madhushala.ds_return.dt_informationRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Madhushala.ds_return.dt_returnRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Madhushala.ds_return.dt_informationRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Madhushala.ds_return">
+	<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member><member name="T:Madhushala.ds_bulk_liter.DataTable1DataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Madhushala.ds_bulk_liter.DataTable2DataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Madhushala.ds_bulk_liter.DataTable1Row">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Madhushala.ds_bulk_liter.DataTable2Row">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Madhushala.ds_bulk_liter.DataTable1RowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Madhushala.ds_bulk_liter.DataTable2RowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Madhushala.ds_bulk_liter">
+	<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member><member name="T:Madhushala.ds_sales_statement.sales_detailDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Madhushala.ds_sales_statement.sales_detailRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Madhushala.ds_sales_statement.sales_detailRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Madhushala.ds_sales_statement">
+	<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member><member name="T:Madhushala.ds_Accounts.AccountsDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Madhushala.ds_Accounts.Table2DataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Madhushala.ds_Accounts.AccountsRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Madhushala.ds_Accounts.Table2Row">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Madhushala.ds_Accounts.AccountsRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Madhushala.ds_Accounts.Table2RowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Madhushala.ds_Accounts">
+	<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member><member name="T:Madhushala.ds_breakage.dt_breakageDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Madhushala.ds_breakage.dt_breakageRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Madhushala.ds_breakage.dt_breakageRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Madhushala.ds_breakage">
+	<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member><member name="T:Madhushala.ds_stock.dt_stockDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Madhushala.ds_stock.dt_stock1DataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Madhushala.ds_stock.dt_stock2DataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Madhushala.ds_stock.dt_stock3DataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Madhushala.ds_stock.dt_stock4DataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Madhushala.ds_stock.dt_stockRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Madhushala.ds_stock.dt_stock1Row">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Madhushala.ds_stock.dt_stock2Row">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Madhushala.ds_stock.dt_stock3Row">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Madhushala.ds_stock.dt_stock4Row">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Madhushala.ds_stock.dt_stockRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Madhushala.ds_stock.dt_stock1RowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Madhushala.ds_stock.dt_stock2RowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Madhushala.ds_stock.dt_stock3RowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Madhushala.ds_stock.dt_stock4RowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Madhushala.ds_stock">
+	<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member><member name="T:Madhushala.ds_stock_itemwise.dt_stockDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Madhushala.ds_stock_itemwise.dt_stockRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Madhushala.ds_stock_itemwise.dt_stockRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Madhushala.ds_stock_itemwise">
+	<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member><member name="P:Madhushala.My.Resources.Resources.ResourceManager">
+	<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:Madhushala.My.Resources.Resources.Culture">
+	<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="T:Madhushala.My.Resources.Resources">
+	<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member><member name="T:Madhushala.DAL.acgroupmstDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Madhushala.DAL.acgroupmstRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Madhushala.DAL.acgroupmstRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Madhushala.DAL">
+	<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member><member name="T:Madhushala.DALTableAdapters.acgroupmstTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="M:Madhushala.DALTableAdapters.TableAdapterManager.UpdateUpdatedRows(Madhushala.DAL,System.Collections.Generic.List{System.Data.DataRow},System.Collections.Generic.List{System.Data.DataRow})">
+	<summary>
+Update rows in top-down order.
+</summary>
+</member><member name="M:Madhushala.DALTableAdapters.TableAdapterManager.UpdateInsertedRows(Madhushala.DAL,System.Collections.Generic.List{System.Data.DataRow})">
+	<summary>
+Insert rows in top-down order.
+</summary>
+</member><member name="M:Madhushala.DALTableAdapters.TableAdapterManager.UpdateDeletedRows(Madhushala.DAL,System.Collections.Generic.List{System.Data.DataRow})">
+	<summary>
+Delete rows in bottom-up order.
+</summary>
+</member><member name="M:Madhushala.DALTableAdapters.TableAdapterManager.GetRealUpdatedRows(System.Data.DataRow[],System.Collections.Generic.List{System.Data.DataRow})">
+	<summary>
+Remove inserted rows that become updated rows after calling TableAdapter.Update(inserted rows) first
+</summary>
+</member><member name="M:Madhushala.DALTableAdapters.TableAdapterManager.UpdateAll(Madhushala.DAL)">
+	<summary>
+Update all changes to the dataset.
+</summary>
+</member><member name="T:Madhushala.DALTableAdapters.TableAdapterManager.UpdateOrderOption">
+	<summary>
+Update Order Option
+</summary>
+</member><member name="T:Madhushala.DALTableAdapters.TableAdapterManager.SelfReferenceComparer">
+	<summary>
+Used to sort self-referenced table's rows
+</summary>
+</member><member name="T:Madhushala.DALTableAdapters.TableAdapterManager">
+	<summary>
+TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
+</summary>
+</member>
+</members>
+</doc>

@@ -1,0 +1,42 @@
+ALTER view [dbo].[vw_payment_detail] as
+-- ===double accountintg the purchase ====
+-- ===this part inclused the purchase amount with the taxes=====
+
+-- ====single accounting the creditors account ============
+--===crediting the purchase account ======
+select trndate as date,purchasemain.companycode,yearcode,suppliercode as ledgercode,name,convert(varchar(max),trnno) as billno,0 as debit,totnetamt as credit
+from purchasemain
+join ledger 
+on ledger.ledcode=purchasemain.suppliercode
+and ledger.companycode=purchasemain.companycode
+where ptype='PURCHASE'
+union all
+
+
+
+-- ====single accounting the payment voucher with the cash voucher  ====
+-- ===debeting the head account ==========================
+select payment_detail.vchdate as date,payment_detail.companycode,payment_detail.yearcode,head_account as ledgercode,name,convert(varchar(max),trnno) as billno,payment_detail.debit as debit,0 as credit
+from payment_detail
+join  payment_main
+on payment_detail.companycode=payment_main.companycode
+and payment_detail.yearcode=payment_main.yearcode
+and payment_detail.vchno=payment_main.vchno
+join ledger 
+on ledger.ledcode=payment_main.head_account
+and ledger.companycode=payment_main.companycode
+union all
+
+
+
+
+
+-- ====single accounting the payment voucher discount =====
+-- ====debiting to the creditors account =================================
+select vchdate as date,payment_main.companycode,yearcode,head_account as ledgercode,name,'Voucher no.'+convert(varchar(max),vchno) as billno,discount as debit,0 as credit
+from payment_main
+join ledger on ledger.ledcode=payment_main.head_account
+and ledger.companycode=payment_main.companycode
+where discount<>0
+
+

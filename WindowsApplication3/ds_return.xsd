@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ds_return" targetNamespace="http://tempuri.org/ds_return.xsd" xmlns:mstns="http://tempuri.org/ds_return.xsd" xmlns="http://tempuri.org/ds_return.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="ds_return" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="ds_return" msprop:Generator_DataSetName="ds_return" msprop:EnableTableAdapterManager="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="dt_return" msprop:Generator_UserTableName="dt_return" msprop:Generator_RowDeletedName="dt_returnRowDeleted" msprop:Generator_RowChangedName="dt_returnRowChanged" msprop:Generator_RowClassName="dt_returnRow" msprop:Generator_RowChangingName="dt_returnRowChanging" msprop:Generator_RowEvArgName="dt_returnRowChangeEvent" msprop:Generator_RowEvHandlerName="dt_returnRowChangeEventHandler" msprop:Generator_TableClassName="dt_returnDataTable" msprop:Generator_TableVarName="tabledt_return" msprop:Generator_RowDeletingName="dt_returnRowDeleting" msprop:Generator_TablePropName="dt_return">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="itemname" msprop:Generator_UserColumnName="itemname" msprop:Generator_ColumnPropNameInRow="itemname" msprop:Generator_ColumnVarNameInTable="columnitemname" msprop:Generator_ColumnPropNameInTable="itemnameColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="ml" msprop:Generator_UserColumnName="ml" msprop:Generator_ColumnPropNameInRow="ml" msprop:Generator_ColumnVarNameInTable="columnml" msprop:Generator_ColumnPropNameInTable="mlColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="qnty" msprop:Generator_UserColumnName="qnty" msprop:Generator_ColumnPropNameInRow="qnty" msprop:Generator_ColumnVarNameInTable="columnqnty" msprop:Generator_ColumnPropNameInTable="qntyColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="rate" msprop:Generator_UserColumnName="rate" msprop:Generator_ColumnPropNameInRow="rate" msprop:Generator_ColumnVarNameInTable="columnrate" msprop:Generator_ColumnPropNameInTable="rateColumn" type="xs:double" minOccurs="0" />
+              <xs:element name="itemamount" msprop:Generator_UserColumnName="itemamount" msprop:Generator_ColumnPropNameInRow="itemamount" msprop:Generator_ColumnVarNameInTable="columnitemamount" msprop:Generator_ColumnPropNameInTable="itemamountColumn" type="xs:double" minOccurs="0" />
+              <xs:element name="trndate" msprop:Generator_UserColumnName="trndate" msprop:Generator_ColumnVarNameInTable="columntrndate" msprop:Generator_ColumnPropNameInRow="trndate" msprop:Generator_ColumnPropNameInTable="trndateColumn" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="dt_information" msprop:Generator_UserTableName="dt_information" msprop:Generator_RowDeletedName="dt_informationRowDeleted" msprop:Generator_RowChangedName="dt_informationRowChanged" msprop:Generator_RowClassName="dt_informationRow" msprop:Generator_RowChangingName="dt_informationRowChanging" msprop:Generator_RowEvArgName="dt_informationRowChangeEvent" msprop:Generator_RowEvHandlerName="dt_informationRowChangeEventHandler" msprop:Generator_TableClassName="dt_informationDataTable" msprop:Generator_TableVarName="tabledt_information" msprop:Generator_RowDeletingName="dt_informationRowDeleting" msprop:Generator_TablePropName="dt_information">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="companyname" msprop:Generator_UserColumnName="companyname" msprop:Generator_ColumnVarNameInTable="columncompanyname" msprop:Generator_ColumnPropNameInRow="companyname" msprop:Generator_ColumnPropNameInTable="companynameColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="date_string" msprop:Generator_UserColumnName="date_string" msprop:Generator_ColumnVarNameInTable="columndate_string" msprop:Generator_ColumnPropNameInRow="date_string" msprop:Generator_ColumnPropNameInTable="date_stringColumn" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
